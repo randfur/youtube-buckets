@@ -15,7 +15,7 @@ export function bucketSwitcher() {
           active,
         });
         return html`
-          <button class="${classes}" .bucket="${bucket}" @click="${tabClick}" tabIndex="0">
+          <button class="${classes}" style="background-color: ${bucket.color}" .bucket="${bucket}" @click="${tabClick}" tabIndex="0">
             ${bucket.name}
           </button>
         `;
@@ -47,20 +47,19 @@ injectStyle(`
 
   font-size: 18px;
   background-color: #333;
-  color: black;
+  color: #fffa;
 }
 
 .tab:hover {
-  color: #fffa;
+  color: white;
   user-select: none;
 }
 
 .tab.active {
   background-color: #555;
   color: white;
-  font-size: 20px;
+  font-size: 24px;
   height: 35px;
-  justify-content: center;
 }
 
 .edit-button {

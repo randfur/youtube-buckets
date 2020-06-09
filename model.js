@@ -5,7 +5,7 @@ interface Stored {
 
 interface Bucket {
   name: string,
-  colour: string,
+  color: string,
   channelIds: [string],
 }
 

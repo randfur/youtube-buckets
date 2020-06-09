@@ -4,11 +4,13 @@ export function injectTestData() {
   Model.stored = {
     buckets: [{
       name: 'bark bark bark',
+      color: '#f70',
       channelIds: [
         'UC7aHrlS_AuO_XfOrelhswXg',
       ],
     }, {
       name: 'bork borkb',
+      color: '#f07',
       channelIds: [
         'UCpmdhW1ru6r6xIaLSbVHoHQ',
       ],
@@ -27,6 +29,12 @@ export function injectTestData() {
         url: 'https://www.youtube.com/channel/UCpmdhW1ru6r6xIaLSbVHoHQ',
         iconUrl: 'https://yt3.ggpht.com/a/AATXAJz7rfiI60zo4NDdIoCFbIrIiFOrtu-XTs9J6Q=s100-c-k-c0xffffffff-no-rj-mo',
         videos: expandVideoData(halleyLabsVideos),
+      },
+      'UCFNJrEtaD4fDe_cH6WQE9sg': {
+        name: '2Snacks',
+        url: 'https://www.youtube.com/channel/UCFNJrEtaD4fDe_cH6WQE9sg',
+        iconUrl: 'https://yt3.ggpht.com/a/AATXAJxrfEjplU9qw150kXydc_eyv5E-t_zwhC1BCg=s48-c-k-c0xffffffff-no-rj-mo',
+        videos: expandVideoData(twoSnacksVideos),
       },
     },
   };
@@ -229,4 +237,32 @@ const halleyLabsVideos = [
   {"name": "Darius - Wishy Washy", "url": "https://www.youtube.com/watch?v=wSxIRPOgCmM"},
   {"name": "HALLEY HARD SOUND UNIT - EGO GAMIFICATION", "url": "https://www.youtube.com/watch?v=NaBlvA4iifg"},
   {"name": "[ALBUM STREAM] hyi - mind breaking the body", "url": "https://www.youtube.com/watch?v=2v-DaRno9fA"},
+];
+
+const twoSnacksVideos = [
+  {"name": "Super Best Sisters Play - Final Fantasy 7", "url": "https://www.youtube.com/watch?v=jZCZtwATFWE"},
+  {"name": "November Update", "url": "https://www.youtube.com/watch?v=IkufE6JhUqM"},
+  {"name": "everything is fine and working as intended", "url": "https://www.youtube.com/watch?v=dfAbLVmY79M"},
+  {"name": "Two Best Sisters Play - Red Dead Redemption 2", "url": "https://www.youtube.com/watch?v=0k8otHMwy5w"},
+  {"name": "Quick update + new TBSP ACU", "url": "https://www.youtube.com/watch?v=ASRj2j_BcQE"},
+  {"name": "Super Best Sisters Play - Shadow The Hedgehog", "url": "https://www.youtube.com/watch?v=ol3R4DacE2I"},
+  {"name": "Two Best Sisters Play - Friday the 13th", "url": "https://www.youtube.com/watch?v=--eAjuzw-_o"},
+  {"name": "Rewards", "url": "https://www.youtube.com/watch?v=_-wPJj2_TUM"},
+  {"name": "Two Best Sisters Play - Fallout 4", "url": "https://www.youtube.com/watch?v=mzkwAv6Cbt4"},
+  {"name": "Two Best Sisters Replay - Assassin's Creed: Brotherhood", "url": "https://www.youtube.com/watch?v=NP3Ld4llTv4"},
+  {"name": "Shitstorm V Animation Timelapse", "url": "https://www.youtube.com/watch?v=uOGniCdS81E"},
+  {"name": "Shitstorm V: Shitsurrection - 70s Exploitative Horror Intro", "url": "https://www.youtube.com/watch?v=x7FrmoBvt1k"},
+  {"name": "Super Best Friends Play Intro", "url": "https://www.youtube.com/watch?v=JJLUwLafvDg"},
+  {"name": "Two Best Sisters Play - PKMN Snap", "url": "https://www.youtube.com/watch?v=9WYZVmdw9gw"},
+  {"name": "Ponyvania: Order of Equestria Intro", "url": "https://www.youtube.com/watch?v=Ogh6xmivX7k"},
+  {"name": "Two Best Sisters Play - Persona 4", "url": "https://www.youtube.com/watch?v=yEQ_6geAKwE"},
+  {"name": "The Tingle Bottle", "url": "https://www.youtube.com/watch?v=i5pNa43Rgac"},
+  {"name": "釘の箱", "url": "https://www.youtube.com/watch?v=ZhPwyHXd07Q"},
+  {"name": "tumblr Question - Animation", "url": "https://www.youtube.com/watch?v=fysNTElCYUU"},
+  {"name": "Two Best Sisters Play - Resident Evil 4", "url": "https://www.youtube.com/watch?v=i7v5wDVDpnc"},
+  {"name": "Teleport Potion", "url": "https://www.youtube.com/watch?v=o5_fQ7787Es"},
+  {"name": "Two Best Sisters Play Portal 2", "url": "https://www.youtube.com/watch?v=L0cY2NWlddU"},
+  {"name": "Two Best Sisters Play - Assassin's Creed: Brotherhood", "url": "https://www.youtube.com/watch?v=Y1mmCYHaZ4s"},
+  {"name": "meet your DOOM - Speed Paint", "url": "https://www.youtube.com/watch?v=0oRYSphRIQY"},
+  {"name": "There was no talking, there was no smiling... - Speed Paint", "url": "https://www.youtube.com/watch?v=7nVxmldHujs" },
 ];
