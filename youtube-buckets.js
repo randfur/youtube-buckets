@@ -1,5 +1,5 @@
 import {html} from 'https://unpkg.com/lit-html?module';
-import {injectStyle} from './utils.js'
+import {injectStyle, getActiveBucket} from './utils.js'
 import {bucketSwitcher} from './bucket-switcher.js'
 import {bucketEditor} from './bucket-editor.js'
 import {bucketDisplay} from './bucket-display.js'
@@ -7,21 +7,39 @@ import {Model} from './model.js'
 
 export function youtubeBuckets() {
   return html`
-    <h1>YouTube Buckets</h1>
+    <div class="header">
+      <h1>YouTube Buckets</h1>
+      <span class="material-icons help-icon" tabIndex="0">help</span>
+    </div>
     ${bucketSwitcher()}
-    ${Model.session.editing ? bucketEditor() : bucketDisplay()}
+    ${getActiveBucket()
+      ? (Model.session.editing ? bucketEditor() : bucketDisplay())
+      : html`<div class="create-hint">Create a bucket ⮭</div>`
+    }
   `;
 }
 
 injectStyle(`
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+@media (min-width: 600px) {
+  body {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
 body {
   background-color: #202020;
   font-family: 'Roboto', sans-serif;
   color: #efefef;
-  margin-left: 20px;
-  margin-right: 60px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 h1 {
@@ -30,5 +48,21 @@ h1 {
 
 h1:hover {
   text-decoration: underline red;
+}
+
+.help-icon {
+  font-size: 30px;
+  user-select: none;
+}
+
+.help-icon:focus:before {
+  background: white;
+  color: black;
+  content: 'bark dogs';
+}
+
+.create-hint {
+  margin-top: 10px;
+  font-size: 20px;
 }
 `);

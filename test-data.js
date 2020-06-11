@@ -3,18 +3,20 @@ import {Model} from './model.js';
 export function injectTestData() {
   Model.stored = {
     buckets: [{
-      name: 'bark bark bark',
+      name: 'Music',
       color: '#f70',
       channelIds: [
         'UC7aHrlS_AuO_XfOrelhswXg',
-      ],
-    }, {
-      name: 'bork borkb',
-      color: '#f07',
-      channelIds: [
         'UCpmdhW1ru6r6xIaLSbVHoHQ',
       ],
+    }, {
+      name: 'Animation',
+      color: '#f07',
+      channelIds: [
+        'UCFNJrEtaD4fDe_cH6WQE9sg',
+      ],
     }],
+    buckets: [],
   };
   Model.downloaded = {
     channels: {
@@ -30,6 +32,12 @@ export function injectTestData() {
         iconUrl: 'https://yt3.ggpht.com/a/AATXAJz7rfiI60zo4NDdIoCFbIrIiFOrtu-XTs9J6Q=s100-c-k-c0xffffffff-no-rj-mo',
         videos: expandVideoData(halleyLabsVideos),
       },
+      'UC7dViO9ogcMViU7hYAxKjbw': {
+        name: 'Kennyoung',
+        url: 'https://www.youtube.com/channel/UC7dViO9ogcMViU7hYAxKjbw',
+        iconUrl: 'https://yt3.ggpht.com/a/AATXAJwR7gejtbgjbCe5oIznQrUqCxcDrClFSd6GeQ=s100-c-k-c0xffffffff-no-rj-mo',
+        videos: expandVideoData(kennyoungVideos),
+      },
       'UCFNJrEtaD4fDe_cH6WQE9sg': {
         name: '2Snacks',
         url: 'https://www.youtube.com/channel/UCFNJrEtaD4fDe_cH6WQE9sg',
@@ -39,8 +47,8 @@ export function injectTestData() {
     },
   };
   Model.session = {
-    activeBucketName: Model.stored.buckets[0].name,
-    editing: true,
+    activeBucketName: Model.stored.buckets[0]?.name,
+    editing: false,
   };
 }
 
@@ -238,6 +246,69 @@ const halleyLabsVideos = [
   {"name": "HALLEY HARD SOUND UNIT - EGO GAMIFICATION", "url": "https://www.youtube.com/watch?v=NaBlvA4iifg"},
   {"name": "[ALBUM STREAM] hyi - mind breaking the body", "url": "https://www.youtube.com/watch?v=2v-DaRno9fA"},
 ];
+
+const kennyoungVideos = [
+  {"name": "[Original] Someday", "url": "https://www.youtube.com/watch?v=EwLUpxe5A6Y"},
+  {"name": "[Cover] Please Take Me Home (blink-182)", "url": "https://www.youtube.com/watch?v=hIx7DsNm18o"},
+  {"name": "[Cover] There Is (Box Car Racer)", "url": "https://www.youtube.com/watch?v=AVABymoM-t4"},
+  {"name": "[Cover] 花鳥風月 (SEKAI NO OWARI)", "url": "https://www.youtube.com/watch?v=Wr0x0Gou6Tw"},
+  {"name": "[Cover] House of Gold (twenty one pilots)", "url": "https://www.youtube.com/watch?v=trKhhXpJNIQ"},
+  {"name": "[Cover] Built This Pool (blink-182)", "url": "https://www.youtube.com/watch?v=_FAxc2NI9fM"},
+  {"name": "[Cover] Vanilla Twilight (Owl City)", "url": "https://www.youtube.com/watch?v=rTmA-6lC9AQ"},
+  {"name": "[Cover] Cigarettes And Valentines (Green Day)", "url": "https://www.youtube.com/watch?v=37zle64GhKs"},
+  {"name": "[Cover] Meet Me On The Roof (Green Day)", "url": "https://www.youtube.com/watch?v=sJqRVP5FuGs"},
+  {"name": "[Cover] Fireflies (Owl City)", "url": "https://www.youtube.com/watch?v=SqNIokmOAR8"},
+  {"name": "[Cover] A Party Song (The Walk Of Shame) (All Time Low)", "url": "https://www.youtube.com/watch?v=0ea0f5JXUhs"},
+  {"name": "[Cover] Boxing Day ft. Kogey (blink-182)", "url": "https://www.youtube.com/watch?v=tOl1jZY3OE4"},
+  {"name": "[Cover] Xmas Time Of The Year (Green Day)", "url": "https://www.youtube.com/watch?v=X_jq2Pa86SA"},
+  {"name": "[Original] Light Beside Of You", "url": "https://www.youtube.com/watch?v=aCHkslfYTTE"},
+  {"name": "[Cover] My Christmas List (Simple Plan)", "url": "https://www.youtube.com/watch?v=SkUj5pfz8EI"},
+  {"name": "[Cover] Happy Holidays, You Bastard (blink-182)", "url": "https://www.youtube.com/watch?v=0jZPgFWseWc"},
+  {"name": "[Cover] Scratch21 Medley", "url": "https://www.youtube.com/watch?v=05bySCprqYs"},
+  {"name": "[Cover] Shoplifter (Green Day)", "url": "https://www.youtube.com/watch?v=fxcPOyCArv0"},
+  {"name": "[Cover] Aliens Exist (blink-182)", "url": "https://www.youtube.com/watch?v=GW6IVDRrvqs"},
+  {"name": "[Cover] Scooby Doo, Where Are You (MxPx)", "url": "https://www.youtube.com/watch?v=7j86Jq1pBUM"},
+  {"name": "[Original] Leatherface", "url": "https://www.youtube.com/watch?v=gb3kZzXJ7i0"},
+  {"name": "[Cover] It's Terror Time Again (Skycycle) (Scooby-Doo on Zombie Island)", "url": "https://www.youtube.com/watch?v=vsb1nlm6F-8"},
+  {"name": "[Cover] Ransom (blink-182)", "url": "https://www.youtube.com/watch?v=AXxiek_kkpI"},
+  {"name": "[Cover] The Grouch (Green Day)", "url": "https://www.youtube.com/watch?v=5Wmesm9FGaU"},
+  {"name": "[Cover] Father Of All... (Green Day)", "url": "https://www.youtube.com/watch?v=28J5O3EzlFU"},
+  {"name": "[Cover] Voldemort (With Confidence)", "url": "https://www.youtube.com/watch?v=KRcSEfEU-Ls"},
+  {"name": "[Cover] Something's Gotta Give (All Time Low)", "url": "https://www.youtube.com/watch?v=p4S_ju0NvPQ"},
+  {"name": "[Cover] High Waisted Shorts (Emily's Army)", "url": "https://www.youtube.com/watch?v=nWTXPvXFMkQ"},
+  {"name": "[Cover] Right Now (SR-71)", "url": "https://www.youtube.com/watch?v=siIm3gMDQoo"},
+  {"name": "[Cover] Escape From The City (Sonic Adventure 2)", "url": "https://www.youtube.com/watch?v=QWm9E83vAFw"},
+  {"name": "[Cover] 1985 (Bowling For Soup)", "url": "https://www.youtube.com/watch?v=Qmd8hUq1N4A"},
+  {"name": "[Cover] Rebel Girl (Angels & Airwaves)", "url": "https://www.youtube.com/watch?v=szsI7iY3qHc"},
+  {"name": "[Cover] Clairvoyant (The Story So Far)", "url": "https://www.youtube.com/watch?v=zd-makiXPaY"},
+  {"name": "[Cover] Ha Ha You're Dead (Green Day)", "url": "https://www.youtube.com/watch?v=uIKwHZS3oMc"},
+  {"name": "[Cover] Not Now (blink-182)", "url": "https://www.youtube.com/watch?v=WnqTZGV3M5s"},
+  {"name": "[Original] Liar", "url": "https://www.youtube.com/watch?v=w_ds4x8gbqg"},
+  {"name": "[Original] Fall In Love With Me", "url": "https://www.youtube.com/watch?v=QrYp435ewuc"},
+  {"name": "[Cover] Reach For The Stars (Sonic Colors)", "url": "https://www.youtube.com/watch?v=rT9tceWJKVs"},
+  {"name": "[Original] I Tried", "url": "https://www.youtube.com/watch?v=MM5iZolIS6I"},
+  {"name": "[Original] Dead Kitty", "url": "https://www.youtube.com/watch?v=iBFzwQ989FI"},
+  {"name": "[Cover] I'm Coming After You (Owl City)", "url": "https://www.youtube.com/watch?v=TNZipVR3ODI"},
+  {"name": "[Original] The Lonely Monster", "url": "https://www.youtube.com/watch?v=Ay2z9njxm7c"},
+  {"name": "[Cover] Can't Keep My Hands Off You ft.Matt/Scratch21 (Simple Plan)", "url": "https://www.youtube.com/watch?v=dk_0146_VTs"},
+  {"name": "[Original] Homicide", "url": "https://www.youtube.com/watch?v=YUAtoD2e_io"},
+  {"name": "[Original] [EP] Bubble Dreams", "url": "https://www.youtube.com/watch?v=7n0UKNJCi5I"},
+  {"name": "[Original] Swing Jazz Rock'n Roll (Short Demo)", "url": "https://www.youtube.com/watch?v=eQOZU3tPziM"},
+  {"name": "[Cover] Die Anywhere Else (Night In The Woods)", "url": "https://www.youtube.com/watch?v=FbXV9v7mUcY"},
+  {"name": "[Cover] Weird Autumn (Night In The Woods)", "url": "https://www.youtube.com/watch?v=sysAA7Z2IRI"},
+  {"name": "[Cover] Umbrella Beach (Owl City)", "url": "https://www.youtube.com/watch?v=A1PN6i3Y-vU"},
+  {"name": "[Cover] I Won't Be Home For Christmas (Blink-182)", "url": "https://www.youtube.com/watch?v=6vtbTS7OKJA"},
+  {"name": "[Original Song] The Last Wish (Short)", "url": "https://www.youtube.com/watch?v=BtCQfO7vCQs"},
+  {"name": "[Cover] Scooby Doo, Where Are You!", "url": "https://www.youtube.com/watch?v=I85LD5ofswE"},
+  {"name": "[Original] Jack-O'-Lantern (Halloween)", "url": "https://www.youtube.com/watch?v=TY751tHrHt4"},
+  {"name": "[Original Song] Foxy The Dog", "url": "https://www.youtube.com/watch?v=uyeQgNEe44k"},
+  {"name": "[Original Song] Spring of Love (Instrumental)", "url": "https://www.youtube.com/watch?v=T4gc383wdcI"},
+  {"name": "[Instrumental Cover] When Can I See You Again (Owl City)", "url": "https://www.youtube.com/watch?v=oJ27x8VJJFE"},
+  {"name": "[Cover] When Can I See You Again (Owl City)", "url": "https://www.youtube.com/watch?v=xVF3HKEuY0o"},
+  {"name": "[Cover] The Gypsy Bard (Korean Cover)", "url": "https://www.youtube.com/watch?v=9_rS2pNGpjw"},
+  {"name": "[Original] Waiting For You", "url": "https://www.youtube.com/watch?v=D1nLDBi-LLk"},
+  {"name": "[Instrumental Cover] Plant Life (Owl City)", "url": "https://www.youtube.com/watch?v=gD-0U73BdbE"},
+]
 
 const twoSnacksVideos = [
   {"name": "Super Best Sisters Play - Final Fantasy 7", "url": "https://www.youtube.com/watch?v=jZCZtwATFWE"},
