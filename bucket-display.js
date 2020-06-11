@@ -41,6 +41,7 @@ export function bucketDisplay() {
 
 injectStyle(`
 .bucket-display {
+  width: calc(100% - 60px);
   margin-top: 10px;
   display: flex;
   flex-direction: row;

@@ -1,8 +1,18 @@
-import {html} from 'https://unpkg.com/lit-html?module';
+import {html, directive} from 'https://unpkg.com/lit-html?module';
 import {classMap} from 'https://unpkg.com/lit-html/directives/class-map?module';
-import {injectStyle, getActiveBucket, getBucketChannels} from './utils.js'
+import {injectStyle, getActiveBucket, getBucketChannels, presetColors, enterIsClick, isTouchScreen} from './utils.js'
 import {Controller} from './controller.js';
 import {Model} from './model.js';
+
+const focusForBucket = directive(() => part => {
+  if (isTouchScreen) {
+    return;
+  }
+  if (part.element.focusedFor != getActiveBucket()) {
+    part.element.focusedFor = getActiveBucket();
+    requestAnimationFrame(_ => part.element.focus());
+  }
+});
 
 export function bucketEditor() {
   const activeBucket = getActiveBucket();
@@ -38,8 +48,13 @@ export function bucketEditor() {
       'channel-bar-to-add': !inActiveBucket,
     });
     return html`
-      <div class="${classes}" .channel="${channel}" @click="${!inActiveBucket ? addChannel : null}">
-        <a href="${channel.url}"><img class="channel-bar-icon" src="${channel.iconUrl}"></a>
+      <div
+          class="${classes}"
+          .channel="${channel}"
+          @click="${!inActiveBucket ? addChannel : null}"
+          @keypress="${enterIsClick}"
+          tabIndex="${!inActiveBucket ? 0 : -1}">
+        <a href="${channel.url}" target="_blank" @click="${stopPropagation}"><img class="channel-bar-icon" src="${channel.iconUrl}"></a>
         <div class="channel-bar-text">
           ${channel.name}
           ${buckets
@@ -52,7 +67,15 @@ export function bucketEditor() {
           }
         </div>
         ${inActiveBucket
-          ? html`<span class="material-icons remove-channel" .channel="${channel}" @click="${removeChannel}">close</span>`
+          ? html`
+              <span
+                  class="material-icons remove-channel"
+                  .channel="${channel}"
+                  @click="${removeChannel}"
+                  @keypress="${enterIsClick}"
+                  tabIndex="0">
+                close
+              </span>`
           : null
         }
       </div>
@@ -60,9 +83,22 @@ export function bucketEditor() {
   }
 
   return html`
-    <div class="bucket-editor">
-      <input type="text" class="name-field" value="${activeBucket.name}" @change="${nameChange}">
-      <div class="colour-choices">colours</div>
+    <div class="name-delete-row">
+      <input type="text" class="name-field" .value="${activeBucket.name}" style="color: ${activeBucket.color}" @change="${nameChange}" ?focus=${focusForBucket()}>
+      <button class="delete-button" @click="${deleteBucket}"><span class="material-icons">delete</span> DELETE</button>
+    </div>
+    
+    <div class="color-choices">
+      ${presetColors.map(color => {
+        const classes = classMap({
+          'color-choice': true,
+          active: color == activeBucket.color,
+        });
+        return html`<button class="${classes}" style="--color: ${color}" @click="${setColor}"></button>`;
+      })}
+    </div>
+    
+    <div class="bucket-channel-editor">
       <div class="in-bucket-list">
         <div class="editor-subheading">Channels in bucket</div>
         ${channelsInActive.map(renderChannel)}
@@ -83,29 +119,76 @@ export function bucketEditor() {
 }
 
 injectStyle(`
-.bucket-editor {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: 1.5fr 30px 1fr;
-  grid-row-gap: 20px;
-  grid-column-gap: 20px;
-  grid-template-areas:
-    "name    .    colours"
-    "in-list hint not-in-list";
+.name-delete-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .name-field {
-  width: 80%;
   background-color: transparent;
   border-style: none;
   border-bottom-style: solid;
   color: white;
   font-size: 24px;
-  grid-area: name;
+  min-width: 0;
 }
 
-.colour-choices {
-  grid-area: colours;
+.delete-button {
+  display: inline-flex;
+  align-items: center;
+
+  border-style: none;
+  background-color: #fff1;
+  color: white;
+  border-radius: 4px;
+  padding-top: 4px;
+  padding-right: 9px;
+  padding-bottom: 4px;
+  margin-left: 20px;
+}
+
+.delete-button:hover {
+  border-style: none;
+  background-color: #f00;
+}
+
+.color-choices {
+  grid-area: colors;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.color-choice {
+  background-color: var(--color);
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border-style: solid;
+  border-color: black;
+}
+
+.color-choice.active {
+  border-color: white;
+}
+
+@media (min-width: 600px) {
+  .bucket-channel-editor {
+    width: 90%;
+  }
+}
+
+.bucket-channel-editor {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr;
+  grid-column-gap: 20px;
+  grid-template-areas:
+    "in-list hint not-in-list";
 }
 
 .in-bucket-list {
@@ -142,7 +225,7 @@ injectStyle(`
 
 .channel-bar-icon {
   border-radius: 100%;
-  height: 50px;
+  height: 48px;
   margin-top: 4px;
 }
 
@@ -171,7 +254,7 @@ injectStyle(`
   user-select: none;
 }
 
-.remove-channel:hover {
+.remove-channel:hover, .remove-channel:focus {
   color: #fff;
 }
 
@@ -190,8 +273,20 @@ function compareChannels(channelA, channelB) {
   return channelA.name.localeCompare(channelB.name);
 }
 
+function stopPropagation(event) {
+  event.stopPropagation();
+}
+
 function nameChange(event) {
   Controller.updateName(event.target.value);
+}
+
+function deleteBucket(event) {
+  Controller.deleteBucket();
+}
+
+function setColor(event) {
+  Controller.setColor(event.target.style.getPropertyValue('--color').trim());
 }
 
 function removeChannel(event) {
