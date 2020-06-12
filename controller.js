@@ -1,6 +1,6 @@
-import {Model} from '/model.js';
-import {rerender} from '/main.js';
-import {getActiveBucket, presetColors, createDefaultBucket} from '/utils.js';
+import {Model} from './model.js';
+import {rerender} from './main.js';
+import {getActiveBucket, presetColors, createDefaultBucket} from './utils.js';
 
 export class Controller {
   static switchToBucket(bucketName) {

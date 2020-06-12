@@ -1,4 +1,4 @@
-import {createDefaultBucket} from '/utils.js';
+import {createDefaultBucket} from './utils.js';
 
 /*
 interface Stored {

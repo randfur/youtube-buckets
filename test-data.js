@@ -1,5 +1,5 @@
-import {Model} from '/model.js';
-import {createDefaultBucket} from '/utils.js';
+import {Model} from './model.js';
+import {createDefaultBucket} from './utils.js';
 
 export function injectTestData() {
   Model.stored = {

@@ -1,8 +1,8 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 import {classMap} from 'https://unpkg.com/lit-html/directives/class-map?module';
-import {injectStyle, enterIsClick} from '/utils.js'
-import {Controller} from '/controller.js';
-import {Model} from '/model.js';
+import {injectStyle, enterIsClick} from '../utils.js'
+import {Controller} from '../controller.js';
+import {Model} from '../model.js';
 
 export function bucketSwitcher() {
   const editing = Model.session.editing;

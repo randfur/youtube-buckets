@@ -1,8 +1,8 @@
 import {html, directive} from 'https://unpkg.com/lit-html?module';
 import {classMap} from 'https://unpkg.com/lit-html/directives/class-map?module';
-import {injectStyle, getActiveBucket, getBucketChannels, presetColors, enterIsClick, isTouchScreen} from '/utils.js'
-import {Controller} from '/controller.js';
-import {Model} from '/model.js';
+import {injectStyle, getActiveBucket, getBucketChannels, presetColors, enterIsClick, isTouchScreen} from '../utils.js'
+import {Controller} from '../controller.js';
+import {Model} from '../model.js';
 
 const focusForBucket = directive(() => part => {
   if (isTouchScreen) {

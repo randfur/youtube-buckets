@@ -1,4 +1,4 @@
-import {Model} from '/model.js';
+import {Model} from './model.js';
 
 export function injectStyle(css) {
   const style = document.createElement('style');
