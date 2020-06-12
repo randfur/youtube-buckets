@@ -11,13 +11,16 @@ export function bucketSwitcher() {
       <button class="edit-button" @click="${toggleEdit}"><span class="material-icons">${editing ? 'view_comfy' : 'edit'}</span>${editing ? 'VIEW' : 'EDIT'}</button>
       ${Model.stored.buckets.map(bucket => {
         const active = bucket.name === Model.session.activeBucketName;
+        const activeEditing = active && Model.session.editing;
         const classes = classMap({
           tab: true,
           active,
         });
         return html`
           <button class="${classes}" style="--color: ${bucket.color}" .bucket="${bucket}" @click="${tabClick}" @keypress="${enterIsClick}" tabIndex="0">
-            ${bucket.name}
+            ${activeEditing ? html`<span class="move-position material-icons" .bucket="${bucket}" @click="${moveLeft}" tabIndex="0">keyboard_arrow_left</span>` : null}
+            <div class="tab-name">${bucket.name}</div>
+            ${activeEditing ? html`<span class="move-position material-icons" .bucket="${bucket}" @click="${moveRight}" tabIndex="0">keyboard_arrow_right</span>` : null}
           </button>
         `;
       })}
@@ -60,14 +63,10 @@ injectStyle(`
 
 .tab {
   display: inline-flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  position: relative;
+  flex-direction: row;
+  align-items: flex-end;
 
   height: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
   margin-right: 1px;
   border-style: none;
   border-bottom-style: solid;
@@ -92,6 +91,19 @@ injectStyle(`
   height: 35px;
 }
 
+.tab-name {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.move-position {
+  font-size: 30px;
+}
+
+.move-position:hover, .move-position:focus {
+  color: #0005;
+}
+
 .tab.new-bucket:hover, .tab.new-bucket:focus {
   background-color: #444
 }
@@ -110,6 +122,16 @@ function tabClick(event) {
     }
     element = element.parentElement;
   }
+}
+
+function moveLeft(event) {
+  Controller.moveLeft();
+  event.stopPropagation();
+}
+
+function moveRight(event) {
+  Controller.moveRight();
+  event.stopPropagation();
 }
 
 function toggleEdit() {

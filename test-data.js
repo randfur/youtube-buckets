@@ -1,4 +1,5 @@
-import {Model} from './model.js';
+import {Model} from '/model.js';
+import {createDefaultBucket} from '/utils.js';
 
 export function injectTestData() {
   Model.stored = {
@@ -16,7 +17,7 @@ export function injectTestData() {
         'UCFNJrEtaD4fDe_cH6WQE9sg',
       ],
     }],
-    buckets: [],
+    buckets: [createDefaultBucket()],
   };
   Model.downloaded = {
     channels: {
@@ -48,7 +49,7 @@ export function injectTestData() {
   };
   Model.session = {
     activeBucketName: Model.stored.buckets[0]?.name,
-    editing: false,
+    editing: true,
   };
 }
 

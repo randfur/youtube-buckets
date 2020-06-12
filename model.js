@@ -1,3 +1,5 @@
+import {createDefaultBucket} from '/utils.js';
+
 /*
 interface Stored {
   buckets: [Bucket]
@@ -39,13 +41,15 @@ interface Session {
 
 export class Model {
   static stored = {
-    buckets: [],
+    buckets: [createDefaultBucket()],
   };
   static downloaded = {
     channels: [],
   };
   static session = {
-    activeBucketName: null,
-    editing: false,
+    activeBucketName: Model.stored.buckets[0].name,
+    editing: true,
   };
 }
+
+window.model = Model;

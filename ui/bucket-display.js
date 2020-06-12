@@ -49,17 +49,27 @@ injectStyle(`
   justify-content: space-between;
 }
 
+@media (max-width: 500px) {
+  .video {
+    width: auto;
+  }
+
+  .video-image-container {
+    width: calc(100vw - 15px);
+  }
+}
+
 .video {
   width: 250px;
   margin-bottom: 20px;
 }
 
-.video-image-container > img {
-  width: 250px;
-}
-
 .video-image-container {
   position: relative;
+}
+
+.video-image-container > img {
+  width: 100%;
 }
 
 a.video {
