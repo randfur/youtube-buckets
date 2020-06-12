@@ -78,10 +78,10 @@ h1:hover {
   display: block;
   position: absolute;
   right: calc(100% + 10px);
-  width: 400px;
+  width: min(calc(100vw - 100px), 400px);
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #000a;
+  background-color: #000c;
   border-radius: 10px;
 }
 `);
