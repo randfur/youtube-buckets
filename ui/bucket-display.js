@@ -1,7 +1,7 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 import {classMap} from 'https://unpkg.com/lit-html/directives/class-map?module';
-import {injectStyle, getActiveBucket} from './utils.js'
-import {Model} from './model.js'
+import {injectStyle, getActiveBucket} from '/utils.js'
+import {Model} from '/model.js'
 
 export function bucketDisplay() {
   const activeBucket = getActiveBucket();
@@ -14,7 +14,7 @@ export function bucketDisplay() {
     return channel.videos.map(video => ({...video, channel}));
   });
   videos.sort((a, b) => b.uploadDate - a.uploadDate);
-  
+
   return html`
     <div class="bucket-display">
       ${videos.map(video => {

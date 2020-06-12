@@ -1,8 +1,8 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 import {classMap} from 'https://unpkg.com/lit-html/directives/class-map?module';
-import {injectStyle, enterIsClick} from './utils.js'
-import {Controller} from './controller.js';
-import {Model} from './model.js';
+import {injectStyle, enterIsClick} from '/utils.js'
+import {Controller} from '/controller.js';
+import {Model} from '/model.js';
 
 export function bucketSwitcher() {
   const editing = Model.session.editing;
@@ -68,18 +68,19 @@ injectStyle(`
   height: 30px;
   padding-left: 20px;
   padding-right: 20px;
-  border-style: none;
-  border-radius: 10px 10px 0 0;
   margin-right: 1px;
-
-  font-size: 18px;
-  background-color: #333;
+  border-style: none;
+  border-bottom-style: solid;
+  border-radius: 10px 10px 0 0;
+  border-color: var(--color);
+  background-color: transparent;
   color: var(--color);
+  font-size: 18px;
   white-space: nowrap;
 }
 
 .tab:hover {
-  color: white;
+  background-color: #fff3;
   user-select: none;
 }
 

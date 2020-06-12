@@ -1,9 +1,9 @@
 import {html} from 'https://unpkg.com/lit-html?module';
-import {injectStyle, getActiveBucket} from './utils.js'
-import {bucketSwitcher} from './bucket-switcher.js'
-import {bucketEditor} from './bucket-editor.js'
-import {bucketDisplay} from './bucket-display.js'
-import {Model} from './model.js'
+import {injectStyle, getActiveBucket} from '/utils.js'
+import {bucketSwitcher} from '/ui/bucket-switcher.js'
+import {bucketEditor} from '/ui/bucket-editor.js'
+import {bucketDisplay} from '/ui/bucket-display.js'
+import {Model} from '/model.js'
 
 export function youtubeBuckets() {
   return html`
@@ -55,9 +55,9 @@ h1:hover {
   user-select: none;
 }
 
-.help-icon:focus:before {
-  background: white;
-  color: black;
+.help-icon::before {
+  background: blue;
+  color: green;
   content: 'bark dogs';
 }
 

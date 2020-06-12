@@ -1,8 +1,8 @@
 import {html, directive} from 'https://unpkg.com/lit-html?module';
 import {classMap} from 'https://unpkg.com/lit-html/directives/class-map?module';
-import {injectStyle, getActiveBucket, getBucketChannels, presetColors, enterIsClick, isTouchScreen} from './utils.js'
-import {Controller} from './controller.js';
-import {Model} from './model.js';
+import {injectStyle, getActiveBucket, getBucketChannels, presetColors, enterIsClick, isTouchScreen} from '/utils.js'
+import {Controller} from '/controller.js';
+import {Model} from '/model.js';
 
 const focusForBucket = directive(() => part => {
   if (isTouchScreen) {
@@ -10,7 +10,10 @@ const focusForBucket = directive(() => part => {
   }
   if (part.element.focusedFor != getActiveBucket()) {
     part.element.focusedFor = getActiveBucket();
-    requestAnimationFrame(_ => part.element.focus());
+    requestAnimationFrame(_ => {
+      part.element.focus();
+      part.element.setSelectionRange(0, -1);
+    });
   }
 });
 
@@ -87,7 +90,7 @@ export function bucketEditor() {
       <input type="text" class="name-field" .value="${activeBucket.name}" style="color: ${activeBucket.color}" @change="${nameChange}" ?focus=${focusForBucket()}>
       <button class="delete-button" @click="${deleteBucket}"><span class="material-icons">delete</span> DELETE</button>
     </div>
-    
+
     <div class="color-choices">
       ${presetColors.map(color => {
         const classes = classMap({
@@ -97,7 +100,7 @@ export function bucketEditor() {
         return html`<button class="${classes}" style="--color: ${color}" @click="${setColor}"></button>`;
       })}
     </div>
-    
+
     <div class="bucket-channel-editor">
       <div class="in-bucket-list">
         <div class="editor-subheading">Channels in bucket</div>
